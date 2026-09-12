@@ -47,6 +47,10 @@ def main():
             pygame.draw.circle(screen, (0, 0, 0), bullet_pos, bullet_radius)
             bullet_pos += bullet_vector * bullet_speed * dt
 
+            if target_hb.colliderect(bullet_hb):
+                target_status = False
+                bullet_status = False
+
         pygame.display.flip()
 
 if __name__ == "__main__":
