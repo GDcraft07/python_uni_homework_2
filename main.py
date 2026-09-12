@@ -8,6 +8,7 @@ def main():
 
     target_radius = 15
     target_x, target_y = (0, 0)
+    target_status = False
     
     done = False
 
@@ -16,7 +17,10 @@ def main():
             if event.type == pygame.QUIT:
                 done = True
 
-        target_x, target_y = (random.randint(target_radius, width), random.randint(target_radius, height))
+        if not target_status:
+            target_x, target_y = (random.randint(target_radius, width - target_radius), random.randint(target_radius, height - target_radius))
+            target_status = True
+
         screen.fill((255, 255, 255))
         pygame.draw.circle(screen, (0, 0, 0), (target_x, target_y), target_radius)
 
