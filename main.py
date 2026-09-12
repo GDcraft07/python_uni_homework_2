@@ -6,6 +6,7 @@ def main():
     width, height = (600, 400)
     screen = pygame.display.set_mode((width, height))
     done = False
+    clock = pygame.time.Clock()
 
     target_radius = 15
     target_x, target_y = (0, 0)
@@ -16,9 +17,12 @@ def main():
     bullet_pos = pygame.Vector2(random.randint(bullet_radius, width - bullet_radius), height)
     bullet_vector = pygame.Vector2(target_x, target_y)
     bullet_status = False
+    bullet_speed = 500
     bullet_hb = None
 
     while not done:
+        dt = clock.tick(60) / 1000
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 done = True
@@ -39,7 +43,9 @@ def main():
         pygame.draw.circle(screen, (0, 0, 0), (target_x, target_y), target_radius)
 
         if bullet_status:
+            bullet_hb = pygame.Rect(bullet_pos.x - bullet_radius, bullet_pos.y - bullet_radius, bullet_radius * 2, bullet_radius * 2)
             pygame.draw.circle(screen, (0, 0, 0), bullet_pos, bullet_radius)
+            bullet_pos += bullet_vector * bullet_speed * dt
 
         pygame.display.flip()
 
