@@ -14,7 +14,7 @@ def main():
     target_hb = None
 
     bullet_radius = 8
-    bullet_pos = pygame.Vector2(random.randint(bullet_radius, width - bullet_radius), height)
+    bullet_pos = pygame.Vector2(width // 2, height)
     bullet_vector = pygame.Vector2(target_x, target_y)
     bullet_status = False
     bullet_speed = 500
@@ -30,7 +30,7 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN and not bullet_status:
                 if event.button == 1:
                     bullet_status = True
-                    bullet_pos = pygame.Vector2(random.randint(bullet_radius, width - bullet_radius), height)
+                    bullet_pos = pygame.Vector2(width // 2, height)
                     bullet_vector = (pygame.Vector2(target_x, target_y) - bullet_pos).normalize()
 
         if not target_status:
